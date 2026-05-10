@@ -1,10 +1,24 @@
 ---
 import { navItems } from "../../data/nav";
 ---
-<details class="md:hidden">
-  <summary class="min-h-11 min-w-11 cursor-pointer">Menu</summary>
+<details class="relative z-40 md:hidden">
+  <summary
+    class="inline-flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded-btn border border-silver-dark bg-offwhite px-3 text-sm font-semibold text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2 [&::-webkit-details-marker]:hidden"
+  >
+    Menu
+  </summary>
   <div class="fixed inset-0 z-40 bg-navy p-8 text-offwhite">
-    <ul class="space-y-4">{navItems.map((item)=><li><a href={item.href}>{item.label}</a></li>)}</ul>
-    <div class="mt-8 space-y-3"><a class="block" href="/apply">Apply Now</a><a class="block rounded-btn bg-teal px-4 py-2" href="/schedule">Schedule a Call</a></div>
+    <ul class="space-y-5 text-lg">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="inline-flex min-h-11 items-center text-xl font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </details>

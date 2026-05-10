@@ -1,0 +1,35 @@
+<button
+  type="button"
+  id="back-to-top"
+  aria-label="Back to top"
+  class="pointer-events-none fixed bottom-24 right-5 z-40 flex h-12 w-12 translate-y-2 items-center justify-center rounded-full border border-silver-dark bg-offwhite text-navy opacity-0 shadow-card transition-all duration-200 hover:border-teal hover:bg-silver focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal md:bottom-8 md:right-8"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"></path>
+  </svg>
+</button>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById("back-to-top");
+    if (!btn) return;
+
+    var threshold = 320;
+
+    function sync() {
+      var show = window.scrollY > threshold;
+      btn.classList.toggle("opacity-0", !show);
+      btn.classList.toggle("pointer-events-none", !show);
+      btn.classList.toggle("translate-y-2", !show);
+      btn.setAttribute("aria-hidden", show ? "false" : "true");
+    }
+
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      btn.focus({ preventScroll: true });
+    });
+
+    window.addEventListener("scroll", sync, { passive: true });
+    sync();
+  })();
+</script>
