@@ -1,0 +1,6 @@
+---
+import { navItems } from "../../data/nav";
+---
+<nav aria-label="Main" class="hidden md:block">
+  <ul class="flex gap-5">{navItems.map((item)=><li><a class="focus-visible:outline-2 focus-visible:outline-teal" href={item.href}>{item.label}</a></li>)}</ul>
+</nav>

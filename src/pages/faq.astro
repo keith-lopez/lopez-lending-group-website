@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Accordion from "../components/ui/Accordion.astro";
+import { faqs } from "../data/faqs";
+const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map((f)=>({"@type":"Question",name:f.question,acceptedAnswer:{"@type":"Answer",text:f.answer}}))};
+---
+<BaseLayout title="FAQ" description="Answers to common mortgage questions for buyers and homeowners in NC and SC." ogImage="/images/og-default.jpg">
+<section class="section-y"><div class="container-x"><h1>Answers to the questions I hear most.</h1><input aria-label="Search FAQs" placeholder="Search questions" class="mt-5 w-full rounded-btn border border-steel p-3" /></div></section>
+<section class="section-y bg-silver"><div class="container-x"><Accordion items={faqs} /></div></section>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

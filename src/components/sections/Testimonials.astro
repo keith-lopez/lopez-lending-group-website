@@ -1,0 +1,4 @@
+---
+import { testimonials } from "../../data/testimonials";
+---
+<section class="section-y bg-silver"><div class="container-x"><h2>Trusted by buyers, homeowners, and agents across the Carolinas</h2><div class="mt-10 grid gap-6 md:grid-cols-3">{testimonials.map((t)=><article class="rounded-card bg-white p-6 shadow-card"><p>“{t.quote}”</p><p class="mt-4 text-sm">{t.name}, {t.city}</p></article>)}</div><p class="mt-8 text-sm">NMLS #PLACEHOLDER · Equal Housing Lender · Licensed in NC + SC</p></div></section>

@@ -1,0 +1,10 @@
+---
+import { navItems } from "../../data/nav";
+---
+<details class="md:hidden">
+  <summary class="min-h-11 min-w-11 cursor-pointer">Menu</summary>
+  <div class="fixed inset-0 z-40 bg-navy p-8 text-offwhite">
+    <ul class="space-y-4">{navItems.map((item)=><li><a href={item.href}>{item.label}</a></li>)}</ul>
+    <div class="mt-8 space-y-3"><a class="block" href="/apply">Apply Now</a><a class="block rounded-btn bg-teal px-4 py-2" href="/schedule">Schedule a Call</a></div>
+  </div>
+</details>

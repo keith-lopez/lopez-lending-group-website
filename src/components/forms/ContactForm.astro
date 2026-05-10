@@ -1,0 +1,9 @@
+<form action="/api/contact" method="POST" class="space-y-4 rounded-card border border-silver-dark bg-white p-6 shadow-card">
+  <!-- TODO: connect to form provider (Formspree / Netlify Forms / SendGrid) -->
+  <label class="block">Name<input required name="name" class="mt-1 w-full rounded-btn border border-steel p-2"/></label>
+  <label class="block">Email<input required type="email" name="email" class="mt-1 w-full rounded-btn border border-steel p-2"/></label>
+  <label class="block">Phone<input required name="phone" class="mt-1 w-full rounded-btn border border-steel p-2"/></label>
+  <label class="block">Best time to reach you<input name="bestTime" class="mt-1 w-full rounded-btn border border-steel p-2"/></label>
+  <label class="block">Message<textarea required name="message" class="mt-1 w-full rounded-btn border border-steel p-2"></textarea></label>
+  <button type="submit" class="min-h-11 rounded-btn bg-teal px-4 py-2 text-offwhite">Send Message</button>
+</form>

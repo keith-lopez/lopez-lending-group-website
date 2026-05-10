@@ -1,0 +1,5 @@
+---
+interface Props { icon:string; title:string; text:string }
+const { icon, title, text } = Astro.props;
+---
+<div class="flex gap-3"><img src={icon} alt="" width="24" height="24" loading="lazy"/><div><p class="font-medium">{title}</p><p class="text-sm">{text}</p></div></div>

@@ -1,0 +1,14 @@
+---
+import Nav from "./Nav.astro";
+import MobileNav from "./MobileNav.astro";
+---
+<header class="sticky top-0 z-30 border-b border-silver-dark bg-offwhite/95 backdrop-blur">
+  <div class="container-x flex items-center justify-between py-3">
+    <a href="/" class="font-serif text-xl">Lopez Lending Group</a>
+    <Nav />
+    <div class="hidden items-center gap-4 md:flex">
+      <a href="/apply" class="min-h-11">Apply Now</a><a href="/schedule" class="rounded-btn bg-teal px-4 py-2 text-offwhite">Schedule a Call</a>
+    </div>
+    <MobileNav />
+  </div>
+</header>

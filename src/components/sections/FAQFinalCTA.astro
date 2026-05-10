@@ -1,0 +1,6 @@
+---
+import Accordion from "../ui/Accordion.astro";
+import { faqs } from "../../data/faqs";
+const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.slice(0,6).map((f)=>({"@type":"Question",name:f.question,acceptedAnswer:{"@type":"Answer",text:f.answer}}))};
+---
+<section class="section-y"><div class="container-x"><h2>Common questions, answered</h2><div class="mt-8"><Accordion items={faqs.slice(0,6)} /></div><div class="mt-10 rounded-card bg-silver p-8"><h3>Ready to feel confident about your next move?</h3><p class="mt-2">Build your Game Plan with clear next steps and proactive communication.</p><div class="mt-4 flex gap-3"><a href="/schedule" class="rounded-btn bg-teal px-4 py-2 text-offwhite">Schedule a Call</a><a href="/faq" class="rounded-btn border border-steel px-4 py-2">View All FAQs</a></div></div></div><script type="application/ld+json" set:html={JSON.stringify(schema)} /></section>

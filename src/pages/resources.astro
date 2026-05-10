@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const posts = (await getCollection("blog")).filter((p)=>!p.data.draft);
+---
+<BaseLayout title="Resources" description="Mortgage guides, articles, and tools to help you make confident financing decisions." ogImage="/images/og-default.jpg">
+<section class="section-y"><div class="container-x"><h1>Tools, guides, and posts to help you make smart financing decisions.</h1><p class="mt-4">Browse practical resources built around a clear Game Plan.</p></div></section>
+<section class="section-y bg-silver"><div class="container-x"><h2>Blog</h2><div class="mt-6 grid gap-6 md:grid-cols-3">{posts.map((p)=><article class="rounded-card bg-white p-5"><p class="text-xs text-steel">{p.data.category}</p><h3 class="mt-2 text-lg">{p.data.title}</h3><p class="mt-2 text-sm">{p.data.description}</p><a class="mt-3 inline-block" href={`/blog/${p.slug}`}>Read more →</a></article>)}</div></div></section>
+</BaseLayout>

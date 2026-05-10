@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { roadmapSteps } from "../data/roadmap";
+import LeadMagnetForm from "../components/forms/LeadMagnetForm.astro";
+---
+<BaseLayout title="Mortgage Roadmap" description="See the 7-step mortgage roadmap from first call to closing day." ogImage="/images/og-default.jpg">
+  <section class="section-y"><div class="container-x"><h1>Your mortgage, mapped out — from first call to closing day.</h1><p class="mt-4">A clear timeline from pre-approval to closing with proactive communication.</p></div></section>
+  <section class="section-y bg-silver"><div class="container-x space-y-4">{roadmapSteps.map((s)=><article class="rounded-card bg-white p-5"><p class="text-sm text-steel">Step {s.number} · {s.timeline}</p><h3>{s.title}</h3><p>{s.description}</p></article>)}</div></section>
+  <section class="section-y"><div class="container-x max-w-prose"><h2>Get the Homebuyer Resource Guide</h2><LeadMagnetForm /></div></section>
+</BaseLayout>
