@@ -15,8 +15,8 @@ Production-ready Astro marketing site for Lopez Lending Group, serving North Car
 
 ## Placeholder values to replace
 
-- NMLS ID (`NMLS #PLACEHOLDER`)
+- NMLS ID is set in `src/data/site.ts` (currently **2814077**).
 - Calendly URL (`CALENDLY-USERNAME-PLACEHOLDER`)
 - Application URL (`APPLICATION-URL-PLACEHOLDER`)
-- Social profile links and direct contact details
+- Social profile links (email and phone are set in `src/data/site.ts`)
 - Replace placeholder JPG/SVG assets in `public/images/`

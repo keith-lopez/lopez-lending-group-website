@@ -1,6 +1,19 @@
 ---
 import { navItems } from "../../data/nav";
 ---
-<nav aria-label="Main" class="hidden md:block">
-  <ul class="flex gap-5">{navItems.map((item)=><li><a class="focus-visible:outline-2 focus-visible:outline-teal" href={item.href}>{item.label}</a></li>)}</ul>
+<nav aria-label="Main" class="max-w-full">
+  <ul class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 md:gap-x-3 lg:gap-x-4">
+    {
+      navItems.map((item) => (
+        <li class="shrink-0">
+          <a
+            class="inline-flex min-h-11 items-center whitespace-nowrap px-1.5 text-base font-medium text-navy transition-colors hover:text-teal focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2 lg:px-2 lg:text-lg"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </nav>

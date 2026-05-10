@@ -1,1 +1,9 @@
-<div class="flex flex-wrap gap-3 text-sm"><span class="rounded-full bg-silver px-3 py-1">NMLS #PLACEHOLDER</span><span class="rounded-full bg-silver px-3 py-1">Equal Housing Lender</span><span class="rounded-full bg-silver px-3 py-1">Licensed in NC + SC</span></div>
+---
+import { nmlsLabel } from "../../data/site";
+---
+
+<div class="flex flex-wrap gap-3 text-sm">
+  <span class="rounded-full bg-silver px-3 py-1">{nmlsLabel}</span>
+  <span class="rounded-full bg-silver px-3 py-1">Equal Housing Lender</span>
+  <span class="rounded-full bg-silver px-3 py-1">Licensed in NC + SC</span>
+</div>
