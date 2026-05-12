@@ -1,8 +1,81 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import EyebrowLabel from "../../components/ui/EyebrowLabel.astro";
 import { getCollection } from "astro:content";
-const posts = (await getCollection("blog")).filter((p)=>!p.data.draft);
+
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+  );
+
+const formatDate = (d: Date) =>
+  new Date(d).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 ---
-<BaseLayout title="Blog" description="Mortgage education and planning insights from Lopez Lending Group." ogImage="/images/og-default.jpg">
-<section class="section-y"><div class="container-x"><h1>Blog</h1><div class="mt-6 grid gap-6 md:grid-cols-2">{posts.map((post)=><article class="rounded-card border border-silver-dark p-5"><h2 class="text-2xl">{post.data.title}</h2><p class="mt-2">{post.data.description}</p><a class="mt-3 inline-block" href={`/blog/${post.slug}`}>Read post →</a></article>)}</div></div></section>
+<BaseLayout
+  title="Blog"
+  description="Honest mortgage writing for buyers, homeowners, and agents in NC + SC."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="The Blog" />
+        <h1>Honest, useful mortgage reads.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          Plain-English writing on buying, refinancing, investing, and what's actually moving in the market.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      {posts.length === 0 ? (
+        <p class="mx-auto max-w-2xl rounded-card bg-white p-6 text-center text-navy/80">
+          New articles are on the way. Check back soon.
+        </p>
+      ) : (
+        <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <article class="flex h-full flex-col overflow-hidden rounded-card bg-white shadow-card">
+              {post.data.image ? (
+                <img
+                  src={post.data.image}
+                  alt=""
+                  width="640"
+                  height="360"
+                  loading="lazy"
+                  class="h-44 w-full object-cover"
+                  aria-hidden="true"
+                />
+              ) : (
+                <div class="h-44 w-full bg-gradient-to-br from-teal/15 via-silver to-silver-dark" aria-hidden="true" />
+              )}
+              <div class="flex flex-1 flex-col p-6">
+                <p class="text-xs font-semibold uppercase tracking-wide text-teal">
+                  {post.data.category}
+                </p>
+                <h2 class="mt-2 text-xl font-semibold leading-snug text-navy">
+                  <a
+                    href={`/blog/${post.slug ?? post.id}`}
+                    class="hover:text-teal focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+                  >
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="mt-2 flex-1 text-sm text-navy/85">{post.data.description}</p>
+                <p class="mt-4 text-xs text-navy/60">{formatDate(post.data.pubDate)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
 </BaseLayout>

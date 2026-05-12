@@ -1,9 +1,141 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
+import LeadMagnetForm from "../components/forms/LeadMagnetForm.astro";
 import { getCollection } from "astro:content";
-const posts = (await getCollection("blog")).filter((p)=>!p.data.draft);
+
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+  );
+
+const categories = [
+  "First-Time Buyers",
+  "Refinancing",
+  "Investment",
+  "Market Updates",
+  "For Agents",
+];
+
+const formatDate = (d: Date) =>
+  new Date(d).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 ---
-<BaseLayout title="Resources" description="Mortgage guides, articles, and tools to help you make confident financing decisions." ogImage="/images/og-default.jpg">
-<section class="section-y"><div class="container-x"><h1>Tools, guides, and posts to help you make smart financing decisions.</h1><p class="mt-4">Browse practical resources built around a clear Game Plan.</p></div></section>
-<section class="section-y bg-silver"><div class="container-x"><h2>Blog</h2><div class="mt-6 grid gap-6 md:grid-cols-3">{posts.map((p)=><article class="rounded-card bg-white p-5"><p class="text-xs text-steel">{p.data.category}</p><h3 class="mt-2 text-lg">{p.data.title}</h3><p class="mt-2 text-sm">{p.data.description}</p><a class="mt-3 inline-block" href={`/blog/${p.slug}`}>Read more →</a></article>)}</div></div></section>
+<BaseLayout
+  title="Resources"
+  description="Guides, articles, and tools to help homebuyers and homeowners across NC + SC make confident mortgage decisions."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="Resources" />
+        <h1>Guides, articles, and tools to make this less confusing.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          I'd rather you walk into your first Game Plan Call already knowing the basics. Everything below is free, written in plain English, and built around how buyers and homeowners in the Carolinas actually shop.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto grid max-w-5xl items-center gap-8 rounded-card bg-white p-8 shadow-card md:grid-cols-5 md:p-10">
+        <div class="md:col-span-3">
+          <EyebrowLabel label="Featured Guide" />
+          <h2 class="text-2xl md:text-3xl">The Homebuyer Resource Guide</h2>
+          <p class="mt-4 text-navy/90">
+            A printable PDF I wrote for my own clients: how pre-approval works, the documents to gather, a budgeting worksheet, and a "what to ask your agent" checklist. Drop your email and I'll send it over.
+          </p>
+        </div>
+        <div class="md:col-span-2">
+          <LeadMagnetForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <h2>From the blog</h2>
+        <p class="mt-3 text-lg text-navy/85">
+          Browse posts by topic, or see them all on the <a href="/blog" class="font-semibold text-teal hover:text-teal-dark">blog index</a>.
+        </p>
+      </div>
+
+      <nav aria-label="Filter posts by category" class="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2 text-sm">
+        {categories.map((cat) => (
+          <span class="rounded-full border border-silver-dark bg-white px-3 py-1.5 font-medium text-navy">
+            {cat}
+          </span>
+        ))}
+      </nav>
+
+      {posts.length === 0 ? (
+        <p class="mx-auto mt-10 max-w-2xl rounded-card bg-silver p-6 text-center text-navy/80">
+          New articles are coming soon. In the meantime, grab the Homebuyer Resource Guide above.
+        </p>
+      ) : (
+        <div class="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <article class="flex h-full flex-col overflow-hidden rounded-card border border-silver-dark bg-white shadow-card">
+              <div class="flex flex-1 flex-col p-6">
+                <p class="text-xs font-semibold uppercase tracking-wide text-teal">
+                  {post.data.category}
+                </p>
+                <h3 class="mt-2 text-lg font-semibold text-navy">
+                  <a
+                    href={`/blog/${post.slug ?? post.id}`}
+                    class="hover:text-teal focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+                  >
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p class="mt-2 flex-1 text-sm text-navy/85">{post.data.description}</p>
+                <p class="mt-4 text-xs text-navy/60">{formatDate(post.data.pubDate)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+        <article class="rounded-card bg-white p-7 shadow-card">
+          <EyebrowLabel label="Tools" />
+          <h3 class="text-2xl">Mortgage calculator</h3>
+          <p class="mt-3 text-navy/85">
+            Plug in a price, down payment, and rate to see a real monthly payment with taxes and insurance.
+          </p>
+          <p class="mt-5">
+            <a href="/contact" class="font-semibold text-teal hover:text-teal-dark">
+              Coming soon — request access →
+            </a>
+          </p>
+        </article>
+
+        <article class="rounded-card bg-white p-7 shadow-card">
+          <EyebrowLabel label="Newsletter" />
+          <h3 class="text-2xl">Honest rate updates</h3>
+          <p class="mt-3 text-navy/85">
+            One short email per month: what's actually moving in the market and what it means for buyers and homeowners. No fluff.
+          </p>
+          <p class="mt-5">
+            <a href="/contact" class="font-semibold text-teal hover:text-teal-dark">
+              Subscribe →
+            </a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

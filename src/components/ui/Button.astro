@@ -1,6 +1,31 @@
 ---
-interface Props { href?: string; variant?: "primary"|"secondary"; class?: string; type?: "button"|"submit" }
-const { href, variant = "primary", class: className = "", type = "button" } = Astro.props;
-const styles = variant === "primary" ? "bg-teal text-offwhite hover:bg-teal-dark" : "border border-steel text-navy hover:bg-silver";
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary";
+  class?: string;
+  type?: "button" | "submit";
+  target?: string;
+  rel?: string;
+}
+const {
+  href,
+  variant = "primary",
+  class: className = "",
+  type = "button",
+  target,
+  rel,
+} = Astro.props;
+const styles =
+  variant === "primary"
+    ? "btn-primary"
+    : "btn-secondary";
 ---
-{href ? <a href={href} class={`inline-flex min-h-11 items-center justify-center rounded-btn px-5 py-3 font-medium focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2 ${styles} ${className}`}> <slot/> </a> : <button type={type} class={`inline-flex min-h-11 items-center justify-center rounded-btn px-5 py-3 font-medium focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2 ${styles} ${className}`}> <slot/> </button>}
+{href ? (
+  <a href={href} class={`${styles} ${className}`} target={target} rel={rel}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={`${styles} ${className}`}>
+    <slot />
+  </button>
+)}

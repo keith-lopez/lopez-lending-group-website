@@ -1,0 +1,43 @@
+---
+interface Props {
+  icon?: string;
+  iconAlt?: string;
+  title: string;
+  description?: string;
+  number?: number;
+  variant?: "card" | "minimal";
+}
+const {
+  icon,
+  iconAlt = "",
+  title,
+  description,
+  number,
+  variant = "card",
+} = Astro.props;
+
+const baseClass =
+  variant === "card"
+    ? "rounded-card border border-silver-dark bg-white p-6 shadow-card"
+    : "rounded-card p-2";
+---
+<article class:list={[baseClass]}>
+  {number !== undefined && (
+    <span class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-teal text-base font-semibold text-offwhite">
+      {number}
+    </span>
+  )}
+  {icon && (
+    <img
+      src={icon}
+      alt={iconAlt}
+      width="48"
+      height="48"
+      loading="lazy"
+      class="mb-4 h-12 w-12"
+    />
+  )}
+  <h3 class="text-xl font-semibold text-navy">{title}</h3>
+  {description && <p class="mt-2 text-navy/85">{description}</p>}
+  <slot />
+</article>

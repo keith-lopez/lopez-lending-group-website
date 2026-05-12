@@ -1,0 +1,37 @@
+---
+const cards = [
+  {
+    title: "Real options, not just the one you walked in with.",
+    body: "Most loan officers can only offer what their bank sells. With access to 290+ lenders, I can show you the program that actually fits — including ones built for self-employed buyers, investors, veterans, and first-time buyers with stories that don't fit a neat box.",
+  },
+  {
+    title: "Plain language, not mortgage jargon.",
+    body: "You shouldn't need a finance degree to understand your own loan. I break down the math, the trade-offs, and the fine print in regular English so you can make a confident decision — not a confused one.",
+  },
+  {
+    title: "A lender who actually calls you back.",
+    body: "The most common complaint about lenders is that they go quiet after the pre-approval letter is sent. That's not me. You'll hear from me before, during, and long after closing — because the only way I want to grow this business is by being someone you'd actually recommend.",
+  },
+];
+---
+<section class="section-y">
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2>Why people keep sending me their family, friends, and clients</h2>
+      <p class="mt-4 text-lg text-navy/85">
+        It's not really about the loan. It's about how it feels to go through this with someone who actually cares about the outcome.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {cards.map((c) => (
+        <article class="flex h-full flex-col rounded-card border border-silver-dark bg-white p-6 shadow-card">
+          <h3 class="text-lg font-semibold leading-snug text-navy md:text-xl">
+            {c.title}
+          </h3>
+          <p class="mt-4 text-navy/85">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

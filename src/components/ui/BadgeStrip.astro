@@ -1,9 +1,20 @@
 ---
-import { nmlsLabel } from "../../data/site";
+import { NMLS_ID, nmlsLabel } from "../../data/site";
+const nmlsConsumerAccessUrl = `https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/${NMLS_ID}`;
 ---
-
-<div class="flex flex-wrap gap-3 text-sm">
-  <span class="rounded-full bg-silver px-3 py-1">{nmlsLabel}</span>
-  <span class="rounded-full bg-silver px-3 py-1">Equal Housing Lender</span>
-  <span class="rounded-full bg-silver px-3 py-1">Licensed in NC + SC</span>
+<div class="flex flex-wrap items-center gap-3 text-sm">
+  <a
+    href={nmlsConsumerAccessUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center rounded-full bg-silver px-3 py-1.5 font-medium text-navy hover:bg-silver-dark focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+  >
+    {nmlsLabel}
+  </a>
+  <span class="inline-flex items-center rounded-full bg-silver px-3 py-1.5 font-medium text-navy">
+    Equal Housing Lender
+  </span>
+  <span class="inline-flex items-center rounded-full bg-silver px-3 py-1.5 font-medium text-navy">
+    Licensed in NC + SC
+  </span>
 </div>

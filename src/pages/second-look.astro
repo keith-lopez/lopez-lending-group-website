@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
+import SecondLookForm from "../components/forms/SecondLookForm.astro";
+
+const steps = [
+  {
+    number: 1,
+    title: "Upload",
+    description:
+      "Send me your Loan Estimate using the form below. PDF, screenshot, or scan — whatever you have.",
+  },
+  {
+    number: 2,
+    title: "Review",
+    description:
+      "I read your rate, fees, and structure line-by-line and compare them to what I'd offer through my 290+ lender network.",
+  },
+  {
+    number: 3,
+    title: "Call",
+    description:
+      "We hop on a quick call so I can tell you straight — stay where you are, or come over. Either way, you'll know exactly what you're paying for.",
+  },
+];
+---
+<BaseLayout
+  title="Free Loan Estimate Review"
+  description="Already received a Loan Estimate from another lender? Send it over and I'll give you a free, honest side-by-side review."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="Free Second Look" />
+        <h1>Already have a Loan Estimate? Let me tell you what it actually says.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          Loan Estimates are designed to be readable, but most buyers still walk away guessing. Send yours over and I'll mark it up in plain English — rate, fees, escrows, lender credits, structure — and tell you straight whether you're getting a fair deal.
+        </p>
+        <p class="mt-4 text-navy/80">
+          No credit pull. No application. No pressure to switch.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2>How it works</h2>
+      </div>
+      <ol class="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
+        {steps.map((s) => (
+          <li class="rounded-card bg-white p-6 shadow-card">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal text-base font-semibold text-offwhite">
+              {s.number}
+            </span>
+            <h3 class="mt-4 text-xl font-semibold text-navy">{s.title}</h3>
+            <p class="mt-2 text-navy/85">{s.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-2xl">
+        <h2>Send me your Loan Estimate</h2>
+        <p class="mt-4 text-lg text-navy/85">
+          Drop the file below. I'll get back to you within one business day with a written comparison and a time to talk it through.
+        </p>
+        <div class="mt-8">
+          <SecondLookForm />
+        </div>
+        <p class="mt-6 rounded-card bg-silver p-5 text-center text-sm text-navy/80">
+          Even if you don't end up working with me, you'll walk away knowing exactly what you're paying for. That's the whole point.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

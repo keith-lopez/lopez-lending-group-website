@@ -1,10 +1,146 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { roadmapSteps } from "../data/roadmap";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
 import LeadMagnetForm from "../components/forms/LeadMagnetForm.astro";
+
+const steps = [
+  {
+    number: 1,
+    title: "Game Plan Call",
+    timeline: "Day 1 · 20 minutes",
+    description:
+      "A no-pressure conversation about where you are, where you want to be, and the cleanest path between the two.",
+    whatsRequired: "Just a calendar opening. No credit pull, no application.",
+  },
+  {
+    number: 2,
+    title: "Pre-Approval",
+    timeline: "1–3 business days",
+    description:
+      "We review documents, run your numbers, and issue a real pre-approval letter (not a pre-qual) you can shop with.",
+    whatsRequired:
+      "Most recent pay stubs, W-2s or tax returns, two months of bank statements, photo ID.",
+  },
+  {
+    number: 3,
+    title: "House Hunting",
+    timeline: "Varies by market",
+    description:
+      "You shop with your agent, confident in your number. I stay available to update letters and run scenarios on the fly.",
+    whatsRequired:
+      "An agent partnership and a list of must-haves vs. nice-to-haves.",
+  },
+  {
+    number: 4,
+    title: "Offer Accepted",
+    timeline: "24–48 hours",
+    description:
+      "We lock your rate strategy, order appraisal, and submit the file to processing. Closing date gets confirmed.",
+    whatsRequired:
+      "Executed purchase contract, earnest money receipt, homeowners insurance quote.",
+  },
+  {
+    number: 5,
+    title: "Underwriting",
+    timeline: "1–2 weeks",
+    description:
+      "The lender reviews everything. I keep you and your agent updated, and we clear conditions quickly as they come in.",
+    whatsRequired:
+      "Updated docs as requested. I'll send a single, clean list — not a drip of one-offs.",
+  },
+  {
+    number: 6,
+    title: "Clear to Close",
+    timeline: "2–5 days before closing",
+    description:
+      "Final approval is issued, the Closing Disclosure goes out, and we confirm your wire instructions and cash to close.",
+    whatsRequired:
+      "Reviewing your CD and verifying wire instructions directly with the closing attorney.",
+  },
+  {
+    number: 7,
+    title: "Closing Day",
+    timeline: "Closing day",
+    description:
+      "You sign, the loan funds, and the keys are yours. I'm a phone call away if anything feels off at the table.",
+    whatsRequired: "Photo ID and your wire (or cashier's check) for cash to close.",
+  },
+];
 ---
-<BaseLayout title="Mortgage Roadmap" description="See the 7-step mortgage roadmap from first call to closing day." ogImage="/images/og-default.jpg">
-  <section class="section-y"><div class="container-x"><h1>Your mortgage, mapped out — from first call to closing day.</h1><p class="mt-4">A clear timeline from pre-approval to closing with proactive communication.</p></div></section>
-  <section class="section-y bg-silver"><div class="container-x space-y-4">{roadmapSteps.map((s)=><article class="rounded-card bg-white p-5"><p class="text-sm text-steel">Step {s.number} · {s.timeline}</p><h3>{s.title}</h3><p>{s.description}</p></article>)}</div></section>
-  <section class="section-y"><div class="container-x max-w-prose"><h2>Get the Homebuyer Resource Guide</h2><LeadMagnetForm /></div></section>
+<BaseLayout
+  title="The Mortgage Roadmap"
+  description="A clear, 7-step mortgage roadmap from the first call to closing day. Know exactly what comes next at every stage."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="The Mortgage Roadmap" />
+        <h1>Your mortgage, mapped out from first call to closing day.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          Most buyers are anxious because nobody ever told them what comes next. Below is the entire journey, what each stage actually requires, and roughly how long it takes. Bookmark this page — it's the cheat sheet I wish someone had handed me on my first deal.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <ol class="mx-auto max-w-3xl space-y-6">
+        {steps.map((s) => (
+          <li class="relative rounded-card border border-silver-dark bg-white p-6 shadow-card md:p-8">
+            <div class="flex items-start gap-4">
+              <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal text-lg font-semibold text-offwhite">
+                {s.number}
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs font-semibold uppercase tracking-wide text-teal">
+                  Step {s.number} · {s.timeline}
+                </p>
+                <h3 class="mt-1 text-xl font-semibold text-navy md:text-2xl">{s.title}</h3>
+                <p class="mt-3 text-navy/90">{s.description}</p>
+                <p class="mt-3 text-sm text-navy/75">
+                  <span class="font-semibold text-navy">What's required:</span> {s.whatsRequired}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto grid max-w-4xl gap-8 rounded-card bg-silver p-8 md:grid-cols-2 md:p-10">
+        <div>
+          <EyebrowLabel label="Free Resource" />
+          <h2 class="text-2xl md:text-3xl">Want the printable Homebuyer Roadmap?</h2>
+          <p class="mt-4 text-navy/85">
+            I'll send you the same PDF I give my new buyers — a one-pager with each step, a document checklist, and a "what to ask your agent" list. No spam, ever.
+          </p>
+        </div>
+        <div>
+          <LeadMagnetForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-navy text-offwhite">
+    <div class="container-x text-center">
+      <h2 class="text-offwhite">Ready to start at Step 1?</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-offwhite/90">
+        Twenty minutes on the calendar is all it takes to know what's possible.
+      </p>
+      <p class="mt-8">
+        <a
+          href="/schedule"
+          class="inline-flex min-h-11 items-center justify-center rounded-btn bg-teal px-6 py-3 text-base font-semibold text-offwhite hover:bg-teal-light focus-visible:outline-2 focus-visible:outline-offwhite focus-visible:outline-offset-2"
+        >
+          Schedule a Game Plan Call
+        </a>
+      </p>
+    </div>
+  </section>
 </BaseLayout>

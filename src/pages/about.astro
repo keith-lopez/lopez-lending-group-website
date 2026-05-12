@@ -1,8 +1,132 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
+import BadgeStrip from "../components/ui/BadgeStrip.astro";
+import { nmlsLabel } from "../data/site";
+
+const values = [
+  {
+    title: "Plain language",
+    body: "If you can't understand it, I haven't done my job. Every loan, fee, and trade-off gets explained in regular English before you sign anything.",
+  },
+  {
+    title: "Honest math",
+    body: "Numbers don't lie, but the way they're presented can. I'll show you the real cost of the loan, not just the headline rate.",
+  },
+  {
+    title: "Long relationships",
+    body: "Closing day isn't the end of the relationship. You'll hear from me long after — for rate alerts, refi math, or just a check-in.",
+  },
+];
 ---
-<BaseLayout title="About Keith Lopez" description="Learn about Keith Lopez and the values behind Lopez Lending Group in NC and SC." ogImage="/images/og-default.jpg">
-  <section class="section-y"><div class="container-x grid items-center gap-8 md:grid-cols-2"><div><h1>Hi, I'm Keith — and I'm the person who actually picks up the phone.</h1><p class="mt-4">I help clients feel informed and supported from pre-approval to closing.</p></div><img src="/images/headshot.jpg" alt="Keith Lopez smiling in a professional headshot" width="640" height="760" loading="eager" class="order-first h-auto w-full max-w-none rounded-card md:order-none" /></div></section>
-  <section class="section-y bg-silver"><div class="container-x grid gap-6 md:grid-cols-3"><article><h3>Communication</h3><p>Proactive updates so you always know what is next.</p></article><article><h3>Preparation</h3><p>A clear process to reduce delays and stress.</p></article><article><h3>Transparency</h3><p>Plainspoken guidance and honest expectations.</p></article></div></section>
-  <section class="section-y"><div class="container-x"><a href="/schedule" class="rounded-btn bg-teal px-5 py-3 text-offwhite">Schedule a Call</a></div></section>
+<BaseLayout
+  title="About Keith Lopez"
+  description="Mortgage loan officer Keith Lopez serves homebuyers, homeowners, and real estate partners across North Carolina and South Carolina."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <EyebrowLabel label="About Lopez Lending Group" />
+        <h1>Hi, I'm Keith. I built this practice around how I'd want my own family treated.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          I'm a mortgage loan officer licensed in North Carolina and South Carolina. I work with first-time buyers, move-up buyers, investors, and the real estate agents who refer them to me.
+        </p>
+      </div>
+      <img
+        src="/images/headshot.jpg"
+        alt="Keith Lopez, mortgage loan officer with Lopez Lending Group"
+        width="640"
+        height="760"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="order-first h-auto w-full max-w-md justify-self-center rounded-card object-cover shadow-card md:order-none md:justify-self-end"
+      />
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <h2>My story</h2>
+        <div class="mt-6 space-y-5 text-lg text-navy/90">
+          <p>
+            I didn't plan to end up in mortgages. I came to lending the long way — through years of watching friends and family stumble through a process nobody ever bothered to explain to them. Watching a first-time buyer sign closing documents she didn't understand stuck with me. So did watching an investor pay tens of thousands more than he should have because he trusted the only loan officer who returned his call.
+          </p>
+          <p>
+            I started Lopez Lending Group to build something different. Not bigger. Not flashier. Different. I wanted clients to feel like they were being walked through their own loan by a person who actually had time to answer questions, who could shop them across a real network of lenders, and who would still pick up the phone two years after closing.
+          </p>
+          <p>
+            With access to 290+ lending partners, I'm not stuck selling one bank's menu. That changes everything. It means a self-employed buyer who got told "no" twice can finally get a "yes." It means a veteran can use the benefit she actually earned. It means a first-time buyer doesn't have to guess whether the loan she's offered is the right one — because we've actually compared it to the alternatives.
+          </p>
+          <p>
+            The goal isn't to be the cheapest loan officer in the Carolinas. The goal is to be the one your friends and family thank you for sending them to.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2>What I value</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {values.map((v) => (
+          <article class="flex h-full flex-col rounded-card border border-silver-dark bg-white p-6 shadow-card">
+            <h3 class="text-xl font-semibold text-navy">{v.title}</h3>
+            <p class="mt-3 text-navy/85">{v.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <h2>Credentials</h2>
+        <ul class="mt-6 space-y-3 text-navy/90">
+          <li>{nmlsLabel} — verifiable on the NMLS Consumer Access database.</li>
+          <li>Licensed in North Carolina and South Carolina.</li>
+          <li>Equal Housing Lender. Working within RESPA-compliant practices.</li>
+          <li>Access to 290+ lending partners across conventional, FHA, VA, USDA, jumbo, DSCR, and non-QM programs.</li>
+        </ul>
+        <div class="mt-6">
+          <BadgeStrip />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl rounded-card border-l-4 border-teal bg-white p-7 shadow-card md:p-9">
+        <EyebrowLabel label="If you're a newer LO reading this" />
+        <h3 class="text-2xl">A short note for the next generation of loan officers.</h3>
+        <p class="mt-4 text-navy/90">
+          If you're early in this career and you're reading this because you're looking for what good looks like — welcome. The job is real, the work matters, and the families on the other end of these phone calls deserve someone who shows up. Build slowly. Be honest when it costs you. Answer the phone. The right reputation compounds. If you'd ever like to grab coffee and talk through a real file, send me a note from the contact page — happy to make time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-navy text-offwhite">
+    <div class="container-x text-center">
+      <h2 class="text-offwhite">Ready to put a Game Plan together?</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-offwhite/90">
+        Twenty minutes is all it takes to know what's possible and what comes next.
+      </p>
+      <p class="mt-8">
+        <a
+          href="/schedule"
+          class="inline-flex min-h-11 items-center justify-center rounded-btn bg-teal px-6 py-3 text-base font-semibold text-offwhite hover:bg-teal-light focus-visible:outline-2 focus-visible:outline-offwhite focus-visible:outline-offset-2"
+        >
+          Schedule a Game Plan Call
+        </a>
+      </p>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,25 +1,50 @@
 ---
+import EyebrowLabel from "../ui/EyebrowLabel.astro";
 import { testimonials } from "../../data/testimonials";
 import { nmlsLabel } from "../../data/site";
----
 
+const featured = testimonials.slice(0, 3);
+---
 <section class="section-y bg-silver">
   <div class="container-x">
-    <h2>Trusted by buyers, homeowners, and agents across the Carolinas</h2>
-    <div class="mt-10 grid gap-6 md:grid-cols-3">
-      {
-        testimonials.map((t) => (
-          <article class="rounded-card bg-white p-6 shadow-card">
-            <p>“{t.quote}”</p>
-            <p class="mt-4 text-sm">
-              {t.name}, {t.city}
-            </p>
-          </article>
-        ))
-      }
+    <div class="mx-auto max-w-3xl text-center">
+      <EyebrowLabel label="From the People I've Worked With" align="center" />
+      <h2>Stories from buyers, homeowners, and agents I've had the privilege to help.</h2>
     </div>
-    <p class="mt-8 text-sm">
-      {nmlsLabel} · Equal Housing Lender · Licensed in NC + SC
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {featured.map((t) => (
+        <article class="flex h-full flex-col rounded-card bg-white p-6 shadow-card">
+          {t.isSample && (
+            <span class="mb-3 inline-flex w-fit items-center rounded-full bg-silver px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-navy/70">
+              Sample
+            </span>
+          )}
+          <p class="text-navy/90">"{t.quote}"</p>
+          <div class="mt-5 border-t border-silver-dark pt-4 text-sm">
+            <p class="font-semibold text-navy">{t.name}</p>
+            <p class="text-navy/75">{t.role} · {t.city}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-sm text-navy/75">
+      <span>{nmlsLabel}</span>
+      <span aria-hidden="true">·</span>
+      <span>Equal Housing Lender</span>
+      <span aria-hidden="true">·</span>
+      <span>Licensed in NC + SC</span>
+    </div>
+
+    <p class="mt-8 text-center">
+      <a
+        href="/testimonials"
+        class="inline-flex items-center justify-center font-semibold text-teal hover:text-teal-dark focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+      >
+        Read more client stories
+        <span class="ml-1 inline-block" aria-hidden="true">→</span>
+      </a>
     </p>
   </div>
 </section>

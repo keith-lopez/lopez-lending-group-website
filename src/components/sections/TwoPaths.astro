@@ -1,0 +1,76 @@
+---
+const alone = [
+  "You take the first loan you're offered and wonder later if there was a better one.",
+  "You miss programs you actually qualified for because nobody asked the right questions.",
+  "Your agent has to chase the lender for status updates because you're being kept in the dark.",
+  "Closing day arrives with numbers that don't match what you expected.",
+];
+const withKeith = [
+  "A loan strategy designed around your real life, not a script.",
+  "Honest comparisons across 290+ lenders so you know you chose well.",
+  "Updates so consistent your agent stops worrying about the file.",
+  "A closing day that goes exactly the way I told you it would.",
+];
+---
+<section class="section-y bg-navy text-offwhite">
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-offwhite">Two ways this could go</h2>
+      <p class="mt-4 text-lg text-offwhite/85">
+        The mortgage you sign today shapes your finances for years. Make sure the person walking you through it is on your side of the table.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 md:gap-8">
+      <article class="rounded-card border border-navy-light bg-navy-dark p-7">
+        <h3 class="text-offwhite">Going it alone or with the wrong lender</h3>
+        <ul class="mt-5 space-y-3">
+          {alone.map((item) => (
+            <li class="flex items-start gap-3 text-offwhite/90">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="mt-1 h-5 w-5 shrink-0 text-steel"
+                aria-hidden="true"
+              >
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"/>
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="rounded-card border-2 border-teal bg-teal/10 p-7">
+        <h3 class="text-offwhite">With Keith in your corner</h3>
+        <ul class="mt-5 space-y-3">
+          {withKeith.map((item) => (
+            <li class="flex items-start gap-3 text-offwhite">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="mt-1 h-5 w-5 shrink-0 text-teal-light"
+                aria-hidden="true"
+              >
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/schedule"
+        class="inline-flex min-h-11 items-center justify-center rounded-btn bg-teal px-6 py-3 text-base font-semibold text-offwhite shadow-sm transition-all duration-200 hover:bg-teal-light focus-visible:outline-2 focus-visible:outline-offwhite focus-visible:outline-offset-2"
+      >
+        Get your free Game Plan
+        <span class="ml-2 inline-block" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

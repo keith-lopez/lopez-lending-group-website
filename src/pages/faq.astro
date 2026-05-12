@@ -1,11 +1,160 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Accordion from "../components/ui/Accordion.astro";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
 import { faqs } from "../data/faqs";
-const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map((f)=>({"@type":"Question",name:f.question,acceptedAnswer:{"@type":"Answer",text:f.answer}}))};
+
+const categories = [...new Set(faqs.map((f) => f.category))];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
 ---
-<BaseLayout title="FAQ" description="Answers to common mortgage questions for buyers and homeowners in NC and SC." ogImage="/images/og-default.jpg">
-<section class="section-y"><div class="container-x"><h1>Answers to the questions I hear most.</h1><input aria-label="Search FAQs" placeholder="Search questions" class="mt-5 w-full rounded-btn border border-steel p-3" /></div></section>
-<section class="section-y bg-silver"><div class="container-x"><Accordion items={faqs} /></div></section>
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<BaseLayout
+  title="FAQ"
+  description="Answers to the mortgage questions Keith Lopez hears most from buyers, homeowners, and agents across NC + SC."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="Frequently Asked Questions" />
+        <h1>Answers to the questions I hear most.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          If you don't see yours, bring it to the Game Plan Call — that's exactly what the call is for. There's no such thing as a silly question on a mortgage.
+        </p>
+
+        <div class="mt-8">
+          <label for="faq-search" class="sr-only">Search FAQs</label>
+          <div class="relative">
+            <input
+              id="faq-search"
+              type="search"
+              placeholder="Search questions..."
+              autocomplete="off"
+              class="w-full rounded-btn border border-steel bg-white p-4 pl-12 text-base text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+              aria-describedby="faq-search-hint"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-steel"
+              aria-hidden="true"
+            >
+              <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p id="faq-search-hint" class="mt-2 text-sm text-navy/60">
+            Filters as you type. Matches against questions and answers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl space-y-12" id="faq-groups">
+        {categories.map((cat) => (
+          <div data-faq-category={cat}>
+            <h2 class="text-2xl md:text-3xl">{cat}</h2>
+            <div class="mt-5 space-y-3">
+              {faqs
+                .filter((f) => f.category === cat)
+                .map((item) => (
+                  <details
+                    class="group rounded-card border border-silver-dark bg-white p-5 shadow-card"
+                    data-faq-item
+                  >
+                    <summary
+                      data-faq-question
+                      class="flex cursor-pointer list-none items-start justify-between gap-3 text-base font-semibold text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+                    >
+                      <span>{item.question}</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        class="h-5 w-5 shrink-0 text-teal transition-transform group-open:rotate-180"
+                        aria-hidden="true"
+                      >
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                      </svg>
+                    </summary>
+                    <p data-faq-answer class="mt-4 text-navy/90">{item.answer}</p>
+                  </details>
+                ))}
+            </div>
+          </div>
+        ))}
+
+        <p id="faq-empty" class="hidden rounded-card bg-white p-6 text-center text-navy/80 shadow-card">
+          No questions match that search. Try a different word, or
+          <a href="/schedule" class="font-semibold text-teal hover:text-teal-dark">bring it to the call</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-navy text-offwhite">
+    <div class="container-x text-center">
+      <h2 class="text-offwhite">Still have a question?</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-offwhite/90">
+        Twenty minutes on a Game Plan Call is the fastest way to get a real answer for your situation.
+      </p>
+      <p class="mt-8">
+        <a
+          href="/schedule"
+          class="inline-flex min-h-11 items-center justify-center rounded-btn bg-teal px-6 py-3 text-base font-semibold text-offwhite hover:bg-teal-light focus-visible:outline-2 focus-visible:outline-offwhite focus-visible:outline-offset-2"
+        >
+          Schedule a Game Plan Call
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <script is:inline>
+    (function () {
+      const input = document.getElementById("faq-search");
+      const empty = document.getElementById("faq-empty");
+      if (!input) return;
+
+      const items = Array.from(document.querySelectorAll("[data-faq-item]"));
+      const categories = Array.from(document.querySelectorAll("[data-faq-category]"));
+
+      function applyFilter(term) {
+        const q = term.trim().toLowerCase();
+        let visible = 0;
+
+        items.forEach((item) => {
+          const question = (item.querySelector("[data-faq-question]")?.textContent || "").toLowerCase();
+          const answer = (item.querySelector("[data-faq-answer]")?.textContent || "").toLowerCase();
+          const match = !q || question.includes(q) || answer.includes(q);
+          item.style.display = match ? "" : "none";
+          if (match) visible += 1;
+        });
+
+        categories.forEach((cat) => {
+          const anyVisible = Array.from(cat.querySelectorAll("[data-faq-item]")).some(
+            (el) => el.style.display !== "none"
+          );
+          cat.style.display = anyVisible ? "" : "none";
+        });
+
+        if (empty) empty.classList.toggle("hidden", visible > 0);
+      }
+
+      input.addEventListener("input", function (e) {
+        applyFilter(e.target.value);
+      });
+    })();
+  </script>
 </BaseLayout>

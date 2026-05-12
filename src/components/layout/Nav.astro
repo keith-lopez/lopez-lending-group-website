@@ -2,12 +2,12 @@
 import { navItems } from "../../data/nav";
 ---
 <nav aria-label="Main" class="max-w-full">
-  <ul class="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 md:gap-x-3 lg:gap-x-4">
+  <ul class="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 md:gap-x-2 lg:gap-x-3">
     {
       navItems.map((item) => (
         <li class="shrink-0">
           <a
-            class="inline-flex min-h-11 items-center whitespace-nowrap px-1.5 text-base font-medium text-navy transition-colors hover:text-teal focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2 lg:px-2 lg:text-lg"
+            class="inline-flex min-h-10 items-center whitespace-nowrap rounded-btn px-2 text-sm font-medium text-navy transition-colors hover:text-teal focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2 lg:px-2.5 lg:text-base"
             href={item.href}
           >
             {item.label}

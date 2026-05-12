@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
+import { CALENDLY_URL } from "../data/site";
+
+const youCanExpect = [
+  "I pick up the phone. If I can't, I'll call back within the business day.",
+  "Same-day pre-approval letters once we have the picture, with the numbers you actually need on offer day.",
+  "A real conversation with your buyer, not a transactional one — so they're informed and ready to negotiate.",
+  "Honest deal-killer math up front. If a file shouldn't go to contract, I'd rather tell you on day one than week four.",
+  "Weekly file updates from contract to clear-to-close, in the format your team prefers.",
+  "Smooth co-promotion of your listings when it makes sense, within RESPA-compliant guidelines.",
+];
+
+const buyerTypes = [
+  {
+    title: "First-time buyers",
+    body: "Patient education without the hand-holding feeling. We translate the process, run the numbers, and give them a real plan they can act on.",
+  },
+  {
+    title: "Move-up buyers",
+    body: "The trickier stuff — bridge strategies, sell-then-buy timing, equity recapture, and structuring offers that actually close.",
+  },
+  {
+    title: "Investors",
+    body: "Conventional investor financing, DSCR loans that qualify on rent rather than tax returns, and portfolio-level strategy for buyers who plan to scale.",
+  },
+];
+
+const askInReturn = [
+  "Loop me in early so I can help your buyer arrive at the table ready to win.",
+  "Send me the contract the day it's executed so I can lock and order appraisal without lag.",
+  "Tell me when something feels off — I'd rather hear it from you on day five than discover it on day twenty.",
+  "Trust me to be honest. If a buyer or a file isn't ready, I'll say so and we'll figure out the next step together.",
+];
+---
+<BaseLayout
+  title="For Real Estate Agents"
+  description="A reliable lending partner for agents across NC + SC — same-day pre-approvals, weekly file updates, and honest math from offer to closing."
+  ogImage="/images/og-for-agents.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="For Real Estate Agents" />
+        <h1>The lender your buyers (and your listings) deserve.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          You don't need another lender pitching you in a coffee shop. You need a partner who closes on time, communicates without being chased, and treats your client like family. That's how I work.
+        </p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <a href={CALENDLY_URL} class="btn-primary">Schedule a 20-minute intro</a>
+          <a href="/contact" class="btn-secondary">Send me a message instead</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <h2>What you can expect from me</h2>
+      </div>
+      <ul class="mx-auto mt-8 grid max-w-3xl gap-4">
+        {youCanExpect.map((item) => (
+          <li class="flex items-start gap-3 rounded-card border border-silver-dark bg-white p-5 shadow-card">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="mt-1 h-5 w-5 shrink-0 text-teal"
+              aria-hidden="true"
+            >
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2>The buyers I love getting referred</h2>
+        <p class="mt-4 text-lg text-navy/85">
+          I work with anyone you'd send my way, but here's where I add the most value.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {buyerTypes.map((t) => (
+          <article class="flex h-full flex-col rounded-card border border-silver-dark bg-white p-6 shadow-card">
+            <h3 class="text-xl font-semibold text-navy">{t.title}</h3>
+            <p class="mt-3 text-navy/85">{t.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl rounded-card bg-white p-8 shadow-card md:p-10">
+        <EyebrowLabel label="Co-Marketing" />
+        <h2 class="text-2xl md:text-3xl">Let's make each other look great in front of buyers.</h2>
+        <p class="mt-5 text-navy/90">
+          Within RESPA-compliant guidelines, I'm happy to co-market your listings with shared open-house support, joint buyer-education content (live or recorded), and split-cost marketing where it makes sense for both sides. We'll keep it simple, document everything, and only build the things that help your audience — not just our logos.
+        </p>
+        <p class="mt-5">
+          <a href="/contact" class="font-semibold text-teal hover:text-teal-dark">
+            Pitch a co-marketing idea →
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <h2>What I ask of you in return</h2>
+        <p class="mt-4 text-lg text-navy/85">
+          Partnerships work both ways. Here's how we keep this clean.
+        </p>
+        <ul class="mt-8 grid gap-4">
+          {askInReturn.map((item) => (
+            <li class="flex items-start gap-3 rounded-card border border-silver-dark bg-white p-5 shadow-card">
+              <span class="mt-1 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-teal" aria-hidden="true"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-navy text-offwhite">
+    <div class="container-x text-center">
+      <h2 class="text-offwhite">Let's get on a call.</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-offwhite/90">
+        Twenty minutes is plenty of time to see if we're a fit. No pressure. No pitch deck.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href={CALENDLY_URL}
+          class="inline-flex min-h-11 items-center justify-center rounded-btn bg-teal px-6 py-3 text-base font-semibold text-offwhite hover:bg-teal-light focus-visible:outline-2 focus-visible:outline-offwhite focus-visible:outline-offset-2"
+        >
+          Schedule a partner intro
+        </a>
+        <a
+          href="/schedule"
+          class="inline-flex min-h-11 items-center justify-center rounded-btn border-2 border-offwhite px-6 py-3 text-base font-semibold text-offwhite hover:bg-offwhite hover:text-navy focus-visible:outline-2 focus-visible:outline-offwhite focus-visible:outline-offset-2"
+        >
+          See my full calendar
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

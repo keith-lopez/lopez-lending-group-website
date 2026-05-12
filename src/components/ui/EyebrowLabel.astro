@@ -1,0 +1,10 @@
+---
+interface Props {
+  label: string;
+  class?: string;
+  align?: "left" | "center";
+}
+const { label, class: className = "", align = "left" } = Astro.props;
+const alignClass = align === "center" ? "text-center" : "";
+---
+<p class:list={["eyebrow", alignClass, className]}>{label}</p>

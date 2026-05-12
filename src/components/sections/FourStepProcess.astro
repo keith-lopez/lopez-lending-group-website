@@ -1,0 +1,35 @@
+---
+import { processSteps } from "../../data/process";
+---
+<section class="section-y bg-silver">
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2>Four steps from first call to closing day.</h2>
+      <p class="mt-4 text-lg text-navy/85">
+        A simple, repeatable process so you always know where you stand and what's coming next.
+      </p>
+    </div>
+
+    <ol class="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {processSteps.map((step) => (
+        <li class="relative rounded-card border border-silver-dark bg-white p-6 shadow-card">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal text-base font-semibold text-offwhite">
+            {step.number}
+          </span>
+          <h3 class="mt-4 text-lg font-semibold text-navy">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-navy/85">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+
+    <p class="mx-auto mt-10 max-w-3xl text-center">
+      <a
+        href="/mortgage-roadmap"
+        class="inline-flex items-center justify-center font-semibold text-teal hover:text-teal-dark focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+      >
+        See the full mortgage roadmap
+        <span class="ml-1 inline-block" aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+</section>

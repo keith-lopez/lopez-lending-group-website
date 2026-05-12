@@ -1,6 +1,53 @@
 ---
 import Accordion from "../ui/Accordion.astro";
 import { faqs } from "../../data/faqs";
-const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.slice(0,6).map((f)=>({"@type":"Question",name:f.question,acceptedAnswer:{"@type":"Answer",text:f.answer}}))};
+
+const homepageQuestions = [
+  "What is a Mortgage Game Plan Call?",
+  "Do I really need to be pre-approved before I look at houses?",
+  "How much money do I actually need for a down payment?",
+  "How much does it cost to work with you?",
+  "How long does it take to close once I'm under contract?",
+  "Can you help if my credit isn't perfect?",
+];
+
+const homepageFaqs = homepageQuestions
+  .map((q) => faqs.find((f) => f.question === q))
+  .filter((f): f is (typeof faqs)[number] => Boolean(f));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homepageFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
 ---
-<section class="section-y"><div class="container-x"><h2>Common questions, answered</h2><div class="mt-8"><Accordion items={faqs.slice(0,6)} /></div><div class="mt-10 rounded-card bg-silver p-8"><h3>Ready to feel confident about your next move?</h3><p class="mt-2">Build your Game Plan with clear next steps and proactive communication.</p><div class="mt-4 flex gap-3"><a href="/schedule" class="rounded-btn bg-teal px-4 py-2 text-offwhite">Schedule a Call</a><a href="/faq" class="rounded-btn border border-steel px-4 py-2">View All FAQs</a></div></div></div><script type="application/ld+json" set:html={JSON.stringify(schema)} /></section>
+<section class="section-y">
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2>Common questions, answered.</h2>
+      <p class="mt-4 text-lg text-navy/85">
+        Don't see yours? Bring it to the call.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-10 max-w-3xl">
+      <Accordion items={homepageFaqs} />
+    </div>
+
+    <div class="mx-auto mt-16 max-w-3xl rounded-card bg-silver p-8 text-center md:p-12">
+      <h3 class="text-2xl md:text-3xl">Whenever you're ready, so am I.</h3>
+      <p class="mt-3 text-lg text-navy/85">
+        A 20-minute call is the simplest way to figure out where you stand and what comes next. No pressure. No commitment. Just a plan.
+      </p>
+      <div class="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+        <a href="/schedule" class="btn-primary">Schedule a Game Plan Call</a>
+        <a href="/faq" class="btn-secondary">View All FAQs</a>
+      </div>
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>

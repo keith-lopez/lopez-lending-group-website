@@ -1,5 +1,27 @@
-<form action="/api/lead-magnet" method="POST" class="space-y-3 rounded-card border border-silver-dark bg-white p-5 text-navy">
-  <!-- TODO: connect to form provider (Formspree / Netlify Forms / SendGrid) -->
-  <label class="block">Email<input required type="email" name="email" class="mt-1 w-full rounded-btn border border-steel p-2"/></label>
-  <button type="submit" class="min-h-11 rounded-btn bg-teal px-4 py-2 text-offwhite">Get the Homebuyer Resource Guide</button>
+---
+// TODO: connect to form provider (Formspree, Netlify Forms, or SendGrid)
+---
+<form
+  action="/api/lead-magnet"
+  method="POST"
+  class="space-y-3 rounded-card border border-silver-dark bg-white p-5 text-navy shadow-card"
+>
+  <label for="lm-email" class="block text-sm font-medium text-navy">
+    Email <span class="text-teal" aria-hidden="true">*</span>
+  </label>
+  <input
+    id="lm-email"
+    type="email"
+    name="email"
+    required
+    autocomplete="email"
+    placeholder="you@example.com"
+    class="w-full rounded-btn border border-steel bg-offwhite p-3 text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+  />
+  <button type="submit" class="btn-primary w-full sm:w-auto">
+    Send me the guide
+  </button>
+  <p class="text-xs text-navy/60">
+    One email, no spam, unsubscribe any time.
+  </p>
 </form>

@@ -1,0 +1,43 @@
+---
+import { loans } from "../../data/loans";
+---
+<section class="section-y">
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2>Loan programs built around your situation</h2>
+      <p class="mt-4 text-lg text-navy/85">
+        With access to 290+ lenders, there's almost always a better-fitting option than the first one you'll be offered.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {loans.map((loan) => (
+        <article class="flex h-full flex-col rounded-card border border-silver-dark bg-white p-6 shadow-card">
+          <img
+            src={loan.icon}
+            alt=""
+            width="48"
+            height="48"
+            loading="lazy"
+            class="h-12 w-12"
+            aria-hidden="true"
+          />
+          <h3 class="mt-4 text-xl font-semibold text-navy">{loan.name}</h3>
+          <p class="mt-3 flex-1 text-navy/85">{loan.description}</p>
+          <a
+            href={`/loan-options#${loan.id}`}
+            class="mt-5 inline-flex items-center font-semibold text-teal hover:text-teal-dark focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+          >
+            Learn more
+            <span class="ml-1 inline-block" aria-hidden="true">→</span>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+      <a href="/loan-options" class="btn-primary">Explore All Loan Options</a>
+      <a href="/resources" class="btn-secondary">Read the Free Homebuyer Guide</a>
+    </div>
+  </div>
+</section>

@@ -16,9 +16,27 @@
   h2 { @apply text-3xl md:text-4xl leading-tight; }
   h3 { @apply text-xl md:text-2xl leading-snug; }
   a { @apply transition-colors; }
+
+  :focus-visible {
+    outline: 2px solid #366e6d;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer components {
   .container-x { @apply max-w-container mx-auto px-5 md:px-8; }
   .section-y { @apply py-20 md:py-28; }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-wider text-teal mb-3;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-btn bg-teal px-6 py-3 text-base font-semibold text-offwhite shadow-sm transition-all duration-200 hover:bg-teal-dark hover:shadow-md active:translate-y-px;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-btn border-2 border-teal bg-offwhite px-6 py-3 text-base font-semibold text-navy transition-colors hover:border-teal-dark hover:bg-silver;
+  }
 }

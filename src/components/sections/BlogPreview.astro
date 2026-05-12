@@ -1,0 +1,83 @@
+---
+import EyebrowLabel from "../ui/EyebrowLabel.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = (await getCollection("blog")).filter((p) => !p.data.draft);
+const posts = allPosts
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+  )
+  .slice(0, 3);
+
+const formatDate = (d: Date) =>
+  new Date(d).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+<section class="section-y">
+  <div class="container-x">
+    <div class="mx-auto max-w-3xl text-center">
+      <EyebrowLabel label="From the Blog" align="center" />
+      <h2>Honest, useful mortgage reads.</h2>
+    </div>
+
+    {posts.length > 0 && (
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <article class="flex h-full flex-col overflow-hidden rounded-card border border-silver-dark bg-white shadow-card">
+            {post.data.image ? (
+              <img
+                src={post.data.image}
+                alt=""
+                width="640"
+                height="360"
+                loading="lazy"
+                class="h-44 w-full object-cover"
+                aria-hidden="true"
+              />
+            ) : (
+              <div class="h-44 w-full bg-gradient-to-br from-teal/15 via-silver to-silver-dark" aria-hidden="true" />
+            )}
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-xs font-semibold uppercase tracking-wide text-teal">
+                {post.data.category}
+              </p>
+              <h3 class="mt-2 text-lg font-semibold leading-snug text-navy">
+                <a
+                  href={`/blog/${post.slug ?? post.id}`}
+                  class="hover:text-teal focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+                >
+                  {post.data.title}
+                </a>
+              </h3>
+              <p class="mt-2 line-clamp-2 text-sm text-navy/85">
+                {post.data.description}
+              </p>
+              <p class="mt-4 text-xs text-navy/60">{formatDate(post.data.pubDate)}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+
+    {posts.length === 0 && (
+      <p class="mt-10 text-center text-navy/70">
+        New articles coming soon. In the meantime, the
+        <a href="/resources" class="ml-1 font-semibold text-teal hover:text-teal-dark">Resources page</a> has helpful guides.
+      </p>
+    )}
+
+    <p class="mt-10 text-center">
+      <a
+        href="/blog"
+        class="inline-flex items-center justify-center font-semibold text-teal hover:text-teal-dark focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+      >
+        Read all articles
+        <span class="ml-1 inline-block" aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+</section>

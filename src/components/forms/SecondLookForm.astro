@@ -1,0 +1,96 @@
+---
+// TODO: connect to form provider (Formspree, Netlify Forms, or SendGrid)
+// File uploads require a provider that accepts multipart/form-data
+// (Formspree paid tier, Netlify Forms, or a custom serverless endpoint).
+---
+<form
+  action="/api/second-look"
+  method="POST"
+  enctype="multipart/form-data"
+  class="space-y-5 rounded-card border border-silver-dark bg-white p-6 shadow-card md:p-8"
+  aria-describedby="second-look-form-help"
+>
+  <p id="second-look-form-help" class="text-sm text-navy/75">
+    Upload your Loan Estimate and I'll come back with a side-by-side comparison.
+    Most reviews are returned within one business day.
+  </p>
+
+  <div>
+    <label for="sl-name" class="block text-sm font-medium text-navy">
+      Full name <span class="text-teal" aria-hidden="true">*</span>
+    </label>
+    <input
+      id="sl-name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      class="mt-1 w-full rounded-btn border border-steel bg-offwhite p-3 text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+    />
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div>
+      <label for="sl-email" class="block text-sm font-medium text-navy">
+        Email <span class="text-teal" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="sl-email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        class="mt-1 w-full rounded-btn border border-steel bg-offwhite p-3 text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+      />
+    </div>
+    <div>
+      <label for="sl-phone" class="block text-sm font-medium text-navy">
+        Phone <span class="text-teal" aria-hidden="true">*</span>
+      </label>
+      <input
+        id="sl-phone"
+        name="phone"
+        type="tel"
+        required
+        autocomplete="tel"
+        inputmode="tel"
+        class="mt-1 w-full rounded-btn border border-steel bg-offwhite p-3 text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="sl-file" class="block text-sm font-medium text-navy">
+      Loan Estimate (PDF) <span class="text-teal" aria-hidden="true">*</span>
+    </label>
+    <input
+      id="sl-file"
+      name="loanEstimate"
+      type="file"
+      required
+      accept="application/pdf,image/png,image/jpeg"
+      class="mt-1 w-full rounded-btn border border-dashed border-steel bg-offwhite p-3 text-sm text-navy file:mr-4 file:rounded-btn file:border-0 file:bg-teal file:px-4 file:py-2 file:text-sm file:font-semibold file:text-offwhite hover:file:bg-teal-dark focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+    />
+    <p class="mt-1 text-xs text-navy/65">PDF, PNG, or JPEG. 10 MB max.</p>
+  </div>
+
+  <div>
+    <label for="sl-message" class="block text-sm font-medium text-navy">
+      Anything I should know?
+    </label>
+    <textarea
+      id="sl-message"
+      name="message"
+      rows="4"
+      class="mt-1 w-full rounded-btn border border-steel bg-offwhite p-3 text-navy focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
+      placeholder="Property under contract, target rate, timeline, etc."
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn-primary w-full sm:w-auto">
+    Send my Loan Estimate for review
+  </button>
+  <p class="text-xs text-navy/65">
+    By submitting, you agree to be contacted about your free Loan Estimate review. No credit pull, no obligation.
+  </p>
+</form>

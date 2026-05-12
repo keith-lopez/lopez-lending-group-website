@@ -1,6 +1,84 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EyebrowLabel from "../components/ui/EyebrowLabel.astro";
+import { APPLICATION_URL } from "../data/site";
+
+const checklist = [
+  "Most recent 30 days of pay stubs",
+  "W-2s or full personal tax returns for the last two years",
+  "Two months of statements for checking, savings, or other asset accounts",
+  "Driver's license or government-issued photo ID",
+  "If self-employed: your last two business tax returns and a year-to-date P&L",
+  "If using a VA loan: Certificate of Eligibility (I can help pull it)",
+];
 ---
-<BaseLayout title="Apply" description="Start your mortgage application with confidence and clear next steps." ogImage="/images/og-default.jpg">
-<section class="section-y"><div class="container-x max-w-prose"><h1>Ready to start? Here's what happens next.</h1><p class="mt-4">You will get a clear process, proactive communication, and support from pre-approval to closing.</p><ul class="mt-4 list-disc pl-5"><li>Recent pay stubs</li><li>W-2s or tax returns</li><li>Asset statements</li></ul><a href="https://APPLICATION-URL-PLACEHOLDER" class="mt-6 inline-block rounded-btn bg-teal px-5 py-3 text-offwhite">Start My Application</a><p class="mt-3"><a href="/schedule">Prefer to talk first? Schedule a call →</a></p></div></section>
+<BaseLayout
+  title="Apply"
+  description="Start your mortgage application with Lopez Lending Group. Secure, paperless, and built to keep your file moving from day one."
+  ogImage="/images/og-default.jpg"
+>
+  <section class="section-y">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <EyebrowLabel label="Start Your Application" />
+        <h1>Ready to start? Here's exactly what happens next.</h1>
+        <p class="mt-5 text-lg text-navy/90">
+          The application takes most folks 15–20 minutes. It's secure, paperless, and the same system real lenders use to issue real pre-approvals — not a tire-kicking pre-qual quiz. The moment you finish, I get a notification and we can hop on a call.
+        </p>
+        <p class="mt-4 text-navy/85">
+          Prefer to talk before you fill anything out? Totally fine — most clients actually do that first.
+          <a href="/schedule" class="font-semibold text-teal hover:text-teal-dark">Schedule a Game Plan Call →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y bg-silver">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl">
+        <h2>What to have ready</h2>
+        <p class="mt-3 text-navy/85">
+          You don't need everything below to start the application — you can upload as you go. But having these handy will keep things moving.
+        </p>
+        <ul class="mt-6 space-y-3">
+          {checklist.map((item) => (
+            <li class="flex items-start gap-3 rounded-card border border-silver-dark bg-white p-4 shadow-card">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="mt-0.5 h-5 w-5 shrink-0 text-teal"
+                aria-hidden="true"
+              >
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-navy/90">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-10 rounded-card bg-white p-7 shadow-card md:p-8">
+          <h3 class="text-2xl">When you're ready</h3>
+          <p class="mt-3 text-navy/85">
+            Click below to open the secure application portal in a new tab. Save your progress as you go — you don't need to finish in one sitting.
+          </p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
+            <a
+              href={APPLICATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+            >
+              Start My Application
+              <span class="ml-2 inline-block" aria-hidden="true">↗</span>
+            </a>
+            <a href="/schedule" class="btn-secondary">Talk first instead</a>
+          </div>
+          <p class="mt-5 text-xs text-navy/65">
+            Application powered by LendingPad through Nexa Mortgage. Your data is encrypted in transit and only visible to you and your loan team.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

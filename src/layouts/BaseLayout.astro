@@ -3,7 +3,11 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import BackToTop from "../components/layout/BackToTop.astro";
 import StickyMobileCTA from "../components/layout/StickyMobileCTA.astro";
-import { CONTACT_EMAIL, CONTACT_PHONE_TEL, NMLS_ID } from "../data/site";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_TEL,
+  NMLS_ID,
+} from "../data/site";
 import "../styles/global.css";
 
 interface Props {
@@ -13,22 +17,42 @@ interface Props {
   canonical?: string;
   noindex?: boolean;
 }
-const { title, description, ogImage = "/images/og-default.jpg", canonical, noindex = false } = Astro.props;
+
+const {
+  title,
+  description,
+  ogImage = "/images/og-default.jpg",
+  canonical,
+  noindex = false,
+} = Astro.props;
+
 const site = "https://lopezlendingroup.com";
 const pageUrl = canonical ?? new URL(Astro.url.pathname, site).toString();
 const absOg = new URL(ogImage, site).toString();
-const schema = {
+
+const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "FinancialService",
   name: "Lopez Lending Group",
+  url: site,
+  image: new URL("/images/og-default.jpg", site).toString(),
+  logo: new URL("/images/logo.svg", site).toString(),
   email: CONTACT_EMAIL,
   telephone: CONTACT_PHONE_TEL,
-  areaServed: ["North Carolina", "South Carolina"],
+  description:
+    "Lopez Lending Group is the mortgage practice of Keith Lopez, serving buyers, homeowners, and real estate partners across North Carolina and South Carolina.",
+  areaServed: [
+    { "@type": "State", name: "North Carolina" },
+    { "@type": "State", name: "South Carolina" },
+  ],
   identifier: {
     "@type": "PropertyValue",
     name: "NMLS ID",
     value: NMLS_ID,
   },
+  sameAs: [
+    // TODO: replace with real social profile URLs before launch.
+  ],
 };
 ---
 
@@ -39,26 +63,41 @@ const schema = {
     <title>{title} | Lopez Lending Group</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={pageUrl} />
+
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={absOg} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:site_name" content="Lopez Lending Group" />
+    <meta property="og:locale" content="en_US" />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absOg} />
+
+    <meta name="theme-color" content="#366e6d" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+
     {noindex && <meta name="robots" content="noindex" />}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   </head>
   <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only">Skip to content</a>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-btn focus:bg-navy focus:px-4 focus:py-2 focus:text-offwhite"
+    >
+      Skip to content
+    </a>
     <Header />
-    <main id="main-content">
+    <main id="main-content" class="pb-20 md:pb-0">
       <slot />
     </main>
     <Footer />
